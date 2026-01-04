@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Presentation Deck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <!-- Vue 3 Global Build -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+    <script>
+      // Optional: Tailwind config tweak for nicer typography/colors
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                500: '#3b82f6',
+                600: '#2563eb',
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-50 antialiased">
+    <div
+      id="app"
+      v-cloak
+      class="min-h-screen flex flex-col bg-deck-gradient"
+    >
+      <!-- Sticky Header -->
+      <header
+        v-if="loaded"
+        class="sticky top-0 z-20 border-b border-slate-800 bg-slate-950/80 backdrop-blur"
+      >
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <img
+              v-if="company &amp;&amp; company.logoUrl"
+              :src="company.logoUrl"
+              class="h-9 w-9 rounded-full object-cover shadow-logo"
+              alt=""
+            />
+            <div class="flex flex-col min-w-0">
+              <div
+                class="text-sm font-semibold tracking-wide uppercase text-slate-300 truncate"
+              >
+                {{ company &amp;&amp; company.name }}
+              </div>
+              <div
+                class="text-xs text-slate-400 truncate"
+              >
+                {{ company &amp;&amp; company.tagline }}
+              </div>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex ml-auto gap-2 text-xs">
+            <button
+              v-for="(slide, index) in slides"
+              :key="slide.id"
+              @click="goToSlide(index)"
+              class="px-3 py-1 rounded-full transition-colors duration-200 border"
+              :class="index === activeSlide
+                ? 'bg-brand-500/20 border-brand-500 text-slate-50'
+                : 'border-slate-700 text-slate-300 hover:bg-slate-800/70'"
+            >
+              {{ slide.navLabel || slide.title }}
+            </button>
+          </nav>
+
+          <button
+            v-if="ui &amp;&amp; ui.fullscreenLabel"
+            @click="enterFullscreen"
+            class="ml-3 hidden md:inline-flex items-center px-3 py-1 rounded-full border border-slate-700 text-xs text-slate-300 hover:bg-slate-800/70 transition-colors"
+          >
+            {{ ui.fullscreenLabel }}
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Deck -->
+      <main class="flex-1 flex items-center justify-center px-3 md:px-6 py-6">
+        <!-- Loading state (no teks, hanya animasi) -->
+        <div
+          v-if="!loaded"
+          class="w-full h-full flex items-center justify-center"
+        >
+          <div class="loader-pulse"></div>
+        </div>
+
+        <!-- Presentation -->
+        <div
+          v-else
+          class="w-full max-w-6xl flex items-center justify-center"
+        >
+          <div
+            class="deck-frame w-full max-w-5xl aspect-[16/9] rounded-3xl overflow-hidden relative shadow-deck bg-slate-900/90 border border-slate-800"
+            @click.self="handleDeckClick"
+          >
+            <transition name="slide-fade" mode="out-in">
+              <section
+                v-if="currentSlide"
+                :key="currentSlide.id"
+                class="w-full h-full flex flex-col px-6 md:px-10 py-6 md:py-8"
+              >
+                <!-- Slide Header (title + subtitle) -->
+                <div class="flex-1 flex flex-col justify-center gap-4">
+                  <div>
+                    <h1
+                      class="text-2xl md:text-4xl font-semibold tracking-tight text-slate-50 mb-2"
+                    >
+                      {{ currentSlide.title }}
+                    </h1>
+                    <p
+                      v-if="currentSlide.subtitle"
+                      class="text-sm md:text-base text-slate-300 max-w-3xl"
+                    >
+                      {{ currentSlide.subtitle }}
+                    </p>
+                  </div>
+
+                  <!-- Slide Content -->
+                  <div class="mt-4 md:mt-6 max-w-4xl">
+                    <!-- Bullet slide -->
+                    <div v-if="currentSlide.type === 'bullet'">
+                      <ul class="space-y-2 md:space-y-3 text-sm md:text-base">
+                        <li
+                          v-for="(item, idx) in currentSlide.items"
+                          :key="idx"
+                          class="flex items-start gap-3"
+                        >
+                          <div
+                            class="mt-1 h-2 w-2 rounded-full bg-brand-500 flex-shrink-0"
+                          ></div>
+                          <div class="text-slate-100 leading-relaxed">
+                            {{ item }}
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Paragraph slide -->
+                    <div v-else-if="currentSlide.type === 'paragraph'">
+                      <p
+                        v-for="(para, idx) in currentSlide.paragraphs"
+                        :key="idx"
+                        class="text-sm md:text-base text-slate-100 leading-relaxed mb-3"
+                      >
+                        {{ para }}
+                      </p>
+                    </div>
+
+                    <!-- Gallery slide -->
+                    <div
+                      v-else-if="currentSlide.type === 'gallery'"
+                      class="flex flex-col md:flex-row gap-4 md:gap-6 items-stretch"
+                    >
+                      <div class="relative flex-1">
+                        <transition name="image-fade" mode="out-in">
+                          <figure
+                            v-if="currentGalleryImage"
+                            :key="currentGalleryImage.src"
+                            class="w-full h-full rounded-2xl overflow-hidden bg-slate-900/70 border border-slate-800 flex flex-col"
+                          >
+                            <img
+                              :src="currentGalleryImage.src"
+                              :alt="currentGalleryImage.alt"
+                              class="w-full h-48 md:h-64 object-cover"
+                            />
+                            <figcaption
+                              class="px-4 py-3 text-xs md:text-sm text-slate-200 bg-slate-900/80 border-t border-slate-800"
+                            >
+                              {{ currentGalleryImage.caption }}
+                            </figcaption>
+                          </figure>
+                        </transition>
+
+                        <!-- Gallery navigation arrows -->
+                        <button
+                          @click.stop="prevImage"
+                          class="gallery-arrow left-2"
+                        >
+                          <span v-if="ui &amp;&amp; ui.prevShortLabel">
+                            {{ ui.prevShortLabel }}
+                          </span>
+                        </button>
+                        <button
+                          @click.stop="nextImage"
+                          class="gallery-arrow right-2"
+                        >
+                          <span v-if="ui &amp;&amp; ui.nextShortLabel">
+                            {{ ui.nextShortLabel }}
+                          </span>
+                        </button>
+
+                        <!-- Gallery dots -->
+                        <div
+                          class="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5"
+                        >
+                          <button
+                            v-for="(img, idx) in currentSlide.gallery.images"
+                            :key="img.src + idx"
+                            @click.stop="setGalleryIndex(idx)"
+                            class="h-2.5 rounded-full transition-all duration-200"
+                            :class="idx === galleryIndex
+                              ? 'w-7 bg-brand-500 shadow-dot'
+                              : 'w-2.5 bg-slate-600 hover:bg-slate-400'"
+                          ></button>
+                        </div>
+                      </div>
+
+                      <!-- Gallery description / bullets -->
+                      <div
+                        v-if="currentSlide.description"
+                        class="md:w-1/3 text-xs md:text-sm text-slate-200 space-y-2 md:space-y-3"
+                      >
+                        <p
+                          v-for="(para, idx) in currentSlide.description"
+                          :key="idx"
+                          class="leading-relaxed"
+                        >
+                          {{ para }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom bar: slide indicator + controls -->
+                <div
+                  class="mt-4 flex items-center justify-between text-[11px] md:text-xs text-slate-400"
+                >
+                  <div class="flex items-center gap-1">
+                    <span v-if="ui &amp;&amp; ui.slideIndicatorPrefix">
+                      {{ ui.slideIndicatorPrefix }}
+                    </span>
+                    <span class="font-medium text-slate-100">
+                      {{ activeSlide + 1 }}
+                    </span>
+                    <span v-if="ui &amp;&amp; ui.slideSeparator">
+                      {{ ui.slideSeparator }}
+                    </span>
+                    <span>
+                      {{ slides.length }}
+                    </span>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <button
+                      @click.stop="prevSlide"
+                      :disabled="activeSlide === 0"
+                      class="px-3 py-1 rounded-full border text-[11px] md:text-xs transition-all duration-200 flex items-center gap-1"
+                      :class="activeSlide === 0
+                        ? 'border-slate-700 text-slate-600 cursor-not-allowed'
+                        : 'border-slate-600 text-slate-200 hover:bg-slate-800/80'"
+                    >
+                      {{ ui &amp;&amp; ui.prevLabel }}
+                    </button>
+                    <button
+                      @click.stop="nextSlide"
+                      :disabled="activeSlide === slides.length - 1"
+                      class="px-3 py-1 rounded-full border text-[11px] md:text-xs transition-all duration-200 flex items-center gap-1"
+                      :class="activeSlide === slides.length - 1
+                        ? 'border-slate-700 text-slate-600 cursor-not-allowed'
+                        : 'border-brand-500 text-slate-100 bg-brand-500/10 hover:bg-brand-500/20'"
+                    >
+                      {{ ui &amp;&amp; ui.nextLabel }}
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </transition>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Vue App Script -->
+    <script src="assets/script.js"></script>
+  </body>
+</html>

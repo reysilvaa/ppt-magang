@@ -1,0 +1,126 @@
+/* Hilangkan flicker saat Vue belum mount */
+[v-cloak] {
+  display: none;
+}
+
+/* Background gradient halus untuk halaman */
+.bg-deck-gradient {
+  background: radial-gradient(circle at top, #0f172a, #020617 55%);
+}
+
+/* Shadow lembut untuk deck */
+.shadow-deck {
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.8),
+    0 0 0 1px rgba(148, 163, 184, 0.12);
+}
+
+/* Shadow logo */
+.shadow-logo {
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35),
+    0 12px 30px rgba(15, 23, 42, 0.7);
+}
+
+/* Frame animasi halus */
+.deck-frame {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.deck-frame:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 28px 80px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+}
+
+/* Loader simple, tanpa teks */
+.loader-pulse {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-top-color: rgba(59, 130, 246, 0.9);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Slide transition */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+.slide-fade-enter-from {
+  opacity: 0;
+  transform: translateY(6px) scale(0.99);
+}
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.99);
+}
+
+/* Gallery image fade */
+.image-fade-enter-active,
+.image-fade-leave-active {
+  transition: opacity 200ms ease;
+}
+.image-fade-enter-from,
+.image-fade-leave-to {
+  opacity: 0;
+}
+
+/* Gallery arrows */
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.85);
+  color: rgb(226, 232, 240);
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: background 160ms ease, transform 120ms ease,
+    border-color 160ms ease, color 160ms ease;
+}
+.gallery-arrow:hover {
+  background: rgba(30, 64, 175, 0.95);
+  border-color: rgba(129, 140, 248, 0.9);
+  color: #f9fafb;
+  transform: translateY(-50%) translateY(-1px);
+}
+.gallery-arrow:active {
+  transform: translateY(-50%) translateY(0);
+}
+
+/* Dot shadow */
+.shadow-dot {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.35);
+}
+
+/* Print-friendly layout (menggunakan orientasi landscape) */
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+  .bg-deck-gradient {
+    background: #ffffff !important;
+  }
+  #app {
+    min-height: auto;
+  }
+  .deck-frame {
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+  }
+}

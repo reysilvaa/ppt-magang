@@ -1,0 +1,141 @@
+{
+  "company": {
+    "name": "PT Contoh Teknologi Nusantara",
+    "logoUrl": "https://images.pexels.com/photos/3184301/pexels-photo-3184301.jpeg?auto=compress&cs=tinysrgb&w=200",
+    "tagline": "Laporan Akhir Magang | Divisi Pengembangan Produk"
+  },
+  "ui": {
+    "nextLabel": "Slide Berikutnya",
+    "prevLabel": "Slide Sebelumnya",
+    "nextShortLabel": "\u203a",
+    "prevShortLabel": "\u2039",
+    "fullscreenLabel": "Mode Layar Penuh (F)",
+    "slideIndicatorPrefix": "Slide",
+    "slideSeparator": "/"
+  },
+  "slides": [
+    {
+      "id": "perkenalan",
+      "type": "bullet",
+      "title": "Perkenalan",
+      "subtitle": "Profil singkat mahasiswa magang dan konteks laporan ini",
+      "navLabel": "Perkenalan",
+      "items": [
+        "Nama: [Nama Mahasiswa], Program Studi [Program Studi], [Universitas]",
+        "Periode magang: [Bulan] [Tahun] \u2013 [Bulan] [Tahun]",
+        "Penempatan: Divisi Pengembangan Produk, PT Contoh Teknologi Nusantara",
+        "Pembimbing lapangan: [Nama Pembimbing] \u2013 [Jabatan]",
+        "Tujuan presentasi: memberikan gambaran menyeluruh mengenai pengalaman dan hasil magang"
+      ]
+    },
+    {
+      "id": "pendahuluan",
+      "type": "paragraph",
+      "title": "Pendahuluan",
+      "subtitle": "Latar belakang, tujuan, dan ruang lingkup kegiatan magang",
+      "navLabel": "Pendahuluan",
+      "paragraphs": [
+        "Program magang di PT Contoh Teknologi Nusantara dirancang untuk memberikan pengalaman praktis kepada mahasiswa dalam lingkungan kerja yang dinamis dan berorientasi inovasi.",
+        "Selama periode magang, fokus utama penempatan adalah pada proses pengembangan produk digital, mulai dari tahap analisis kebutuhan, perancangan solusi, hingga pengujian dan dokumentasi.",
+        "Laporan ini merangkum rangkaian aktivitas yang dilakukan, hasil yang dicapai, serta pembelajaran yang diperoleh, sekaligus memberikan gambaran singkat mengenai profil perusahaan tempat magang berlangsung."
+      ]
+    },
+    {
+      "id": "profil-perusahaan",
+      "type": "bullet",
+      "title": "Profil Perusahaan",
+      "subtitle": "Gambaran singkat PT Contoh Teknologi Nusantara",
+      "navLabel": "Profil Perusahaan",
+      "items": [
+        "Bidang usaha: solusi perangkat lunak dan layanan konsultasi transformasi digital.",
+        "Segmentasi klien: perusahaan menengah dan besar di sektor keuangan, manufaktur, dan pemerintahan.",
+        "Produk utama: platform analitik data, sistem manajemen proyek, dan solusi otomasi proses bisnis.",
+        "Nilai utama: kolaborasi, integritas, dan inovasi berkelanjutan.",
+        "Budaya kerja: agile, kolaboratif lintas tim, dan berorientasi pada pembelajaran berkelanjutan."
+      ]
+    },
+    {
+      "id": "kegiatan-magang-garis-besar",
+      "type": "bullet",
+      "title": "Kegiatan Magang",
+      "subtitle": "Garis besar aktivitas dan tanggung jawab utama",
+      "navLabel": "Kegiatan Magang",
+      "items": [
+        "Mendukung analisis kebutuhan fitur baru bersama tim produk dan pengembang.",
+        "Membantu penyusunan dokumentasi teknis dan user guide sederhana untuk fitur yang dikembangkan.",
+        "Berpartisipasi dalam daily stand-up dan sesi review sprint untuk memahami alur kerja agile.",
+        "Melakukan pengujian fungsional dasar (smoke test) pada modul-modul yang dikerjakan tim.",
+        "Mengembangkan prototype internal sederhana untuk mengeksplorasi ide atau konsep fitur baru."
+      ]
+    },
+    {
+      "id": "galeri-kegiatan",
+      "type": "gallery",
+      "title": "Galeri Kegiatan Magang",
+      "subtitle": "Cuplikan aktivitas dan suasana kerja selama magang",
+      "navLabel": "Galeri",
+      "description": [
+        "Galeri ini menampilkan beberapa momen penting selama program magang, mulai dari sesi diskusi dengan tim, keterlibatan dalam pertemuan proyek, hingga suasana kerja sehari-hari di kantor.",
+        "Foto-foto ini menggambarkan lingkungan kerja yang kolaboratif, terbuka terhadap ide baru, dan mendukung proses belajar mahasiswa."
+      ],
+      "gallery": {
+        "images": [
+          {
+            "src": "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "Diskusi dengan tim pengembangan",
+            "caption": "Diskusi rutin dengan tim pengembangan untuk membahas kebutuhan fitur dan pembagian tugas."
+          },
+          {
+            "src": "https://images.pexels.com/photos/3184309/pexels-photo-3184309.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "Sesi kolaborasi di ruang kerja",
+            "caption": "Sesi kolaborasi lintas divisi untuk menyelaraskan solusi teknis dengan kebutuhan bisnis."
+          },
+          {
+            "src": "https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "Presentasi hasil sprint",
+            "caption": "Presentasi singkat hasil sprint di hadapan tim untuk mendapatkan umpan balik dan arahan lanjutan."
+          }
+        ]
+      }
+    },
+    {
+      "id": "hasil-output",
+      "type": "bullet",
+      "title": "Hasil dan Output",
+      "subtitle": "Kontribusi konkret selama masa magang",
+      "navLabel": "Hasil / Output",
+      "items": [
+        "Menyusun rancangan awal dan dokumentasi spesifikasi sederhana untuk satu modul fitur aplikasi internal.",
+        "Menyelesaikan beberapa perbaikan minor (bug fixes) pada tampilan antarmuka berdasarkan hasil pengujian.",
+        "Memberikan masukan usability dari perspektif pengguna baru yang digunakan sebagai bahan perbaikan desain.",
+        "Menghasilkan ringkasan dokumentasi teknis langkah demi langkah untuk membantu onboarding anggota tim baru.",
+        "Menyusun laporan dan presentasi akhir magang sebagai referensi internal dan kebutuhan akademik."
+      ]
+    },
+    {
+      "id": "kesimpulan",
+      "type": "paragraph",
+      "title": "Kesimpulan",
+      "subtitle": "Ringkasan pembelajaran dan manfaat program magang",
+      "navLabel": "Kesimpulan",
+      "paragraphs": [
+        "Program magang di PT Contoh Teknologi Nusantara memberikan kesempatan untuk menerapkan pengetahuan akademik dalam konteks proyek nyata, sekaligus memahami dinamika kerja tim di industri teknologi.",
+        "Melalui keterlibatan langsung dalam aktivitas pengembangan produk, mahasiswa memperoleh pemahaman yang lebih baik mengenai siklus hidup pengembangan perangkat lunak, komunikasi lintas fungsi, dan pentingnya dokumentasi yang terstruktur.",
+        "Pengalaman ini diharapkan menjadi bekal berharga untuk langkah karier selanjutnya, baik dalam dunia profesional maupun pengembangan kompetensi akademik."
+      ]
+    },
+    {
+      "id": "terima-kasih",
+      "type": "bullet",
+      "title": "Terima Kasih",
+      "subtitle": "Apresiasi kepada perusahaan, pembimbing, dan tim terkait",
+      "navLabel": "Terima Kasih",
+      "items": [
+        "Terima kasih kepada manajemen PT Contoh Teknologi Nusantara atas kesempatan magang yang diberikan.",
+        "Apresiasi kepada pembimbing lapangan dan seluruh anggota tim atas arahan, dukungan, dan kepercayaan selama proses magang.",
+        "Ucapan terima kasih kepada dosen pembimbing dan pihak kampus yang memfasilitasi program magang ini.",
+        "Harapan untuk dapat terus menjaga hubungan baik dan menjalin kolaborasi di masa mendatang."
+      ]
+    }
+  ]
+}
