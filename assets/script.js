@@ -10,6 +10,9 @@ createApp({
       activeSlide: 0,
       galleryIndex: 0,
       showMobileMenu: false,
+      scrolled: false,
+      touchStartX: null,
+      touchStartY: null,
     };
   },
   computed: {
@@ -49,6 +52,9 @@ createApp({
         this._syncGalleryIndexForSlide();
       }
     },
+    handleScroll() {
+      this.scrolled = window.scrollY > 10;
+    },
     handleDeckClick(event) {
       // Klik di area kosong (bukan tombol/nav) untuk next
       if (event.target === event.currentTarget) {
@@ -56,12 +62,52 @@ createApp({
       }
     },
     handleKeydown(e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
         this.nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
         this.prevSlide();
       } else if (e.key === 'f' || e.key === 'F') {
         this.enterFullscreen();
+      } else if (e.key === 'Home') {
+        this.goToSlide(0);
+      } else if (e.key === 'End') {
+        this.goToSlide(this.slides.length - 1);
+      }
+    },
+    handleWheel(e) {
+      e.preventDefault();
+      if (e.deltaY > 0) {
+        this.nextSlide();
+      } else {
+        this.prevSlide();
+      }
+    },
+    handleTouchStart(e) {
+      this.touchStartX = e.touches[0].clientX;
+      this.touchStartY = e.touches[0].clientY;
+    },
+    handleTouchEnd(e) {
+      if (!this.touchStartX || !this.touchStartY) return;
+      
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaX = this.touchStartX - touchEndX;
+      const deltaY = this.touchStartY - touchEndY;
+      
+      // Minimum swipe distance
+      const minSwipeDistance = 50;
+      
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
+        if (Math.abs(deltaX) > minSwipeDistance) {
+          if (deltaX > 0) {
+            this.nextSlide();
+          } else {
+            this.prevSlide();
+          }
+        }
       }
     },
     nextImage() {
@@ -142,8 +188,16 @@ createApp({
   mounted() {
     this._loadContent();
     window.addEventListener('keydown', this.handleKeydown);
+    window.addEventListener('wheel', this.handleWheel, { passive: false });
+    window.addEventListener('touchstart', this.handleTouchStart, { passive: true });
+    window.addEventListener('touchend', this.handleTouchEnd, { passive: true });
+    window.addEventListener('scroll', this.handleScroll);
   },
   unmounted() {
     window.removeEventListener('keydown', this.handleKeydown);
+    window.removeEventListener('wheel', this.handleWheel);
+    window.removeEventListener('touchstart', this.handleTouchStart);
+    window.removeEventListener('touchend', this.handleTouchEnd);
+    window.removeEventListener('scroll', this.handleScroll);
   },
 }).mount('#app');

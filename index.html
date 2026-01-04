@@ -35,39 +35,54 @@
       };
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 antialiased">
+  <body class="bg-slate-50 text-slate-900 antialiased overflow-hidden">
     <div
       id="app"
       v-cloak
-      class="min-h-screen flex flex-col bg-deck-gradient"
+      class="min-h-screen flex flex-col bg-deck-gradient relative"
     >
+      <!-- Background Pattern -->
+      <div class="fixed inset-0 opacity-5 pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-500/10 via-transparent to-brand-600/10"></div>
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
+
       <!-- Sticky Header -->
       <header
         v-if="loaded"
-        class="sticky top-0 z-30 border-b border-slate-200/70 bg-white/95 backdrop-blur-xl shadow-lg"
+        class="sticky top-0 z-30 border-b border-slate-200/70 bg-white/95 backdrop-blur-xl shadow-lg transition-all duration-500"
+        :class="{ 'shadow-2xl': scrolled }"
       >
-        <div class="w-full px-4 md:px-6 lg:px-8 py-3 md:py-4 flex items-center gap-3 md:gap-4">
+        <div class="w-full px-4 md:px-6 lg:px-8 py-3 md:py-4 flex items-center gap-3 md:gap-4 min-w-0">
           <!-- Logo & Company Info - Left Side -->
-          <div class="flex items-center gap-2 md:gap-2.5 min-w-0 flex-shrink-0">
-            <div>
+          <div class="flex items-center gap-3 md:gap-4 min-w-0 flex-shrink-0 group">
+            <div class="relative flex-shrink-0">
               <img
-                v-if="company &amp;&amp; company.logoUrl"
+                v-if="company && company.logoUrl"
                 :src="company.logoUrl"
-                class="h-24 w-24 md:h-32 md:w-32 object-contain"
+                class="h-20 w-20 md:h-24 md:w-24 object-contain transition-transform duration-300 group-hover:scale-110 shadow-logo-enhanced"
                 alt=""
               />
+              <div class="absolute -inset-2 bg-gradient-to-r from-brand-500/20 to-brand-600/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <div class="flex flex-col min-w-0">
+            <div class="flex flex-col min-w-0 flex-1">
               <div
-                class="text-sm md:text-base lg:text-lg font-extrabold tracking-tight text-slate-900 truncate leading-tight"
+                class="text-base md:text-lg lg:text-xl font-extrabold tracking-tight text-slate-900 truncate leading-tight transition-colors duration-300 group-hover:text-brand-600"
               >
-                {{ company &amp;&amp; company.name }}
+                {{ company && company.name }}
               </div>
               <div
-                class="text-sm md:text-sm text-brand-600 font-semibold truncate flex items-center gap-1"
+                class="text-sm md:text-base text-brand-600 font-semibold truncate flex items-center gap-1.5"
               >
-                <span class="inline-block w-1 h-1 bg-brand-500 rounded-full"></span>
-                {{ company &amp;&amp; company.tagline }}
+                <span class="inline-block w-1.5 h-1.5 bg-brand-500 rounded-full animate-pulse"></span>
+                {{ company && company.tagline }}
               </div>
             </div>
           </div>
@@ -76,37 +91,41 @@
           <div class="flex-1"></div>
 
           <!-- Desktop Navigation - Right Side -->
-          <nav class="hidden md:flex items-center gap-1 flex-shrink-0">
-            <button
-              v-for="(slide, index) in slides"
-              :key="slide.id"
-              @click="goToSlide(index)"
-              class="px-2.5 py-1 rounded-md transition-all duration-300 border font-semibold shadow-sm relative overflow-hidden group flex-shrink-0 text-[10px] lg:text-xs whitespace-nowrap"
-              :class="index === activeSlide
-                ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white border-brand-500 shadow-md scale-105'
-                : 'border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-brand-500/50 hover:text-brand-600'"
-            >
-              <span class="relative z-10">{{ slide.navLabel || slide.title }}</span>
-            </button>
+          <nav class="hidden md:flex items-center gap-2 flex-shrink-0 overflow-x-auto scrollbar-hide max-w-[60vw] lg:max-w-[50vw]">
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <button
+                v-for="(slide, index) in slides"
+                :key="slide.id"
+                @click="goToSlide(index)"
+                class="px-4 py-2 rounded-lg transition-all duration-300 border font-semibold shadow-sm relative overflow-hidden group flex-shrink-0 text-sm lg:text-base whitespace-nowrap transform hover:scale-105"
+                :class="index === activeSlide
+                  ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white border-brand-500 shadow-lg scale-105'
+                  : 'border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-brand-500/50 hover:text-brand-600 hover:shadow-md'"
+              >
+                <span class="relative z-10">{{ slide.navLabel || slide.title }}</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-500/0 to-brand-600/0 group-hover:from-brand-500/10 group-hover:to-brand-600/10 transition-all duration-300"></div>
+              </button>
+            </div>
           </nav>
 
           <!-- Mobile Menu Toggle -->
           <button
             @click="toggleMobileMenu"
-            class="md:hidden p-1.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex-shrink-0"
+            class="md:hidden p-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all duration-300 flex-shrink-0 hover:scale-110 shadow-sm hover:shadow-md"
+            :class="{ 'bg-brand-50 border-brand-500/50': showMobileMenu }"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 transition-transform duration-300" :class="{ 'rotate-90': showMobileMenu }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
 
           <!-- Fullscreen Button -->
           <button
-            v-if="ui &amp;&amp; ui.fullscreenLabel"
+            v-if="ui && ui.fullscreenLabel"
             @click="enterFullscreen"
-            class="hidden md:inline-flex items-center gap-1 px-2 py-1 rounded-md border border-slate-200 text-[10px] lg:text-xs text-slate-700 hover:bg-slate-50 hover:border-brand-500/50 hover:text-brand-600 transition-all duration-300 shadow-sm hover:shadow font-semibold group flex-shrink-0"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 text-sm lg:text-base text-slate-700 hover:bg-slate-50 hover:border-brand-500/50 hover:text-brand-600 transition-all duration-300 shadow-sm hover:shadow-md font-semibold group flex-shrink-0 hover:scale-105"
           >
-            <svg class="w-3 h-3 lg:w-3.5 lg:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 lg:w-5.5 lg:h-5.5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
             </svg>
             <span class="hidden lg:inline">Fullscreen</span>
@@ -117,17 +136,17 @@
         <transition name="mobile-menu">
           <div
             v-if="showMobileMenu"
-            class="md:hidden border-t border-slate-200/70 bg-white/98 backdrop-blur-xl"
+            class="md:hidden border-t border-slate-200/70 bg-white/98 backdrop-blur-xl shadow-inner max-h-64 overflow-y-auto"
           >
-            <div class="px-4 py-2 grid grid-cols-2 gap-1.5">
+            <div class="px-4 py-3 grid grid-cols-2 gap-2">
               <button
                 v-for="(slide, index) in slides"
                 :key="slide.id"
                 @click="goToSlide(index); showMobileMenu = false"
-                class="px-2.5 py-1.5 rounded-lg transition-all duration-300 border text-[10px] font-semibold text-left"
+                class="px-4 py-3 rounded-xl transition-all duration-300 border text-sm font-semibold text-left transform hover:scale-105"
                 :class="index === activeSlide
-                  ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white border-brand-500 shadow-md'
-                  : 'border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-brand-500/50'"
+                  ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white border-brand-500 shadow-lg'
+                  : 'border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-brand-500/50 hover:shadow-md'"
               >
                 {{ slide.navLabel || slide.title }}
               </button>
@@ -137,59 +156,76 @@
       </header>
 
       <!-- Main Deck -->
-      <main class="flex-1 flex items-center justify-center px-1 md:px-2 py-3 md:py-4">
-        <!-- Loading state (no teks, hanya animasi) -->
+      <main class="flex-1 flex items-center justify-center px-2 md:px-4 py-4 md:py-6 relative">
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+          <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-brand-500/5 rounded-full blur-3xl animate-float"></div>
+          <div class="absolute bottom-1/3 right-1/4 w-24 h-24 bg-brand-600/5 rounded-full blur-2xl animate-float-delayed"></div>
+        </div>
+
+        <!-- Loading state -->
         <div
           v-if="!loaded"
-          class="w-full h-full flex items-center justify-center"
+          class="w-full h-full flex items-center justify-center relative z-10"
         >
-          <div class="loader-pulse"></div>
+          <div class="text-center space-y-6">
+            <div class="loader-pulse relative">
+              <div class="absolute inset-0 bg-gradient-to-r from-brand-500/20 to-brand-600/20 rounded-full blur-xl animate-pulse"></div>
+            </div>
+            <div class="text-lg text-slate-600 font-medium animate-pulse">Memuat presentasi...</div>
+          </div>
         </div>
 
         <!-- Presentation -->
         <div
           v-else
-          class="w-full flex items-center justify-center"
+          class="w-full flex items-center justify-center relative z-10"
         >
           <div
-            class="deck-frame w-full max-w-[95vw] aspect-[16/9] max-h-[calc(100vh-60px)] rounded-2xl md:rounded-3xl overflow-hidden relative shadow-deck bg-gradient-to-br from-white via-white to-slate-50/30 border border-slate-200/80"
-            @click.self="handleDeckClick"
+            class="deck-frame w-full max-w-[95vw] aspect-[16/9] max-h-[calc(100vh-120px)] rounded-3xl md:rounded-[2rem] overflow-hidden relative shadow-deck bg-gradient-to-br from-white via-white to-slate-50/30 border border-slate-200/80 hover:shadow-2xl transition-all duration-500 group"
+            @click="handleDeckClick"
           >
+            <!-- Deck Inner Glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 via-transparent to-brand-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
             <transition name="slide-fade" mode="out-in">
               <section
                 v-if="currentSlide"
                 :key="currentSlide.id"
-                class="w-full h-full flex flex-col px-5 md:px-8 lg:px-10 py-4 md:py-5 lg:py-6"
+                class="w-full h-full flex flex-col px-6 md:px-8 lg:px-10 py-4 md:py-6 relative"
                 :class="currentSlide.type === 'opening' ? 'justify-center' : 'justify-between'"
               >
                 <!-- Opening slide (special layout) -->
-                <div v-if="currentSlide.type === 'opening'" class="flex-1 flex items-center justify-center">
-                  <div class="text-center space-y-6 md:space-y-8 lg:space-y-12 max-w-4xl mx-auto px-4">
+                <div v-if="currentSlide.type === 'opening'" class="flex-1 flex items-center justify-center animate-slide-in">
+                  <div class="text-center space-y-6 md:space-y-8 max-w-5xl mx-auto px-6">
                     <!-- Logo -->
-                    <div v-if="currentSlide.media" class="flex justify-center mb-6 md:mb-8">
-                      <img 
-                        :src="currentSlide.media.src" 
-                        :alt="currentSlide.media.alt"
-                        class="h-32 w-32 md:h-48 md:w-48 lg:h-56 lg:w-56 object-contain drop-shadow-lg"
-                      />
+                    <div v-if="currentSlide.media" class="flex justify-center mb-8 md:mb-10 animate-bounce-in">
+                      <div class="relative">
+                        <img 
+                          :src="currentSlide.media.src" 
+                          :alt="currentSlide.media.alt"
+                          class="h-32 w-32 md:h-40 md:w-40 lg:h-48 lg:w-48 object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-110"
+                        />
+                        <div class="absolute -inset-4 bg-gradient-to-r from-brand-500/20 to-brand-600/20 rounded-full blur-2xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+                      </div>
                     </div>
                     
                     <!-- Title and Subtitle -->
-                    <div class="space-y-3 md:space-y-4">
-                      <h1 class="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-slate-900 leading-tight">
+                    <div class="space-y-4 md:space-y-6">
+                      <h1 class="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-slate-900 leading-tight bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">
                         {{ currentSlide.title }}
                       </h1>
-                      <p v-if="currentSlide.subtitle" class="text-lg md:text-xl lg:text-2xl text-brand-600 font-semibold leading-relaxed">
+                      <p v-if="currentSlide.subtitle" class="text-xl md:text-2xl lg:text-3xl text-brand-600 font-semibold leading-relaxed">
                         {{ currentSlide.subtitle }}
                       </p>
                     </div>
 
                     <!-- Author Info -->
-                    <div v-if="currentSlide.items" class="mt-8 md:mt-12 lg:mt-16">
-                      <div class="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-2xl p-6 md:p-8 border border-slate-200 shadow-lg max-w-2xl mx-auto">
-                        <div class="space-y-2 md:space-y-3 text-sm md:text-base lg:text-lg text-slate-700">
-                          <div v-for="(item, idx) in currentSlide.items" :key="idx" class="text-center">
-                            <span class="font-medium">{{ item }}</span>
+                    <div v-if="currentSlide.items" class="mt-8 md:mt-10 animate-slide-up-delayed">
+                      <div class="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-2xl p-6 md:p-8 border border-slate-200 shadow-xl max-w-3xl mx-auto backdrop-blur-sm">
+                        <div class="space-y-3 md:space-y-4 text-base md:text-lg lg:text-xl text-slate-700">
+                          <div v-for="(item, idx) in currentSlide.items" :key="idx" class="text-center font-medium">
+                            <span class="inline-block px-6 py-3 bg-white/50 rounded-lg border border-slate-200/50 shadow-sm">{{ item }}</span>
                           </div>
                         </div>
                       </div>
@@ -198,40 +234,43 @@
                 </div>
 
                 <!-- Slide Header (title + subtitle) for non-opening slides -->
-                <div class="flex flex-col gap-2 md:gap-3" v-if="currentSlide.type !== 'opening'">
-                  <div class="slide-header-container">
-                    <div class="slide-title-accent"></div>
-                    <h1
-                      class="text-lg md:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 mb-1 leading-tight"
-                    >
-                      {{ currentSlide.title }}
-                    </h1>
-                    <p
-                      v-if="currentSlide.subtitle"
-                      class="text-xs md:text-sm lg:text-base text-slate-600 max-w-4xl font-medium leading-relaxed"
-                    >
-                      {{ currentSlide.subtitle }}
-                    </p>
-                  </div>
+                <div class="flex flex-col gap-2 md:gap-3 animate-slide-in" v-if="currentSlide.type !== 'opening'">
+                    <div class="slide-header-container relative">
+                      <div class="slide-title-accent absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-500 to-brand-600 rounded-full"></div>
+                      <div class="pl-4">
+                        <h1
+                          class="text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 mb-2 leading-tight"
+                        >
+                          {{ currentSlide.title }}
+                        </h1>
+                        <p
+                          v-if="currentSlide.subtitle"
+                          class="text-base md:text-lg lg:text-xl text-slate-600 max-w-4xl font-medium leading-relaxed"
+                        >
+                          {{ currentSlide.subtitle }}
+                        </p>
+                      </div>
+                    </div>
 
                   <!-- Slide Content -->
-                  <div class="mt-1 md:mt-2 max-w-full flex-1"
+                  <div class="mt-2 md:mt-3 max-w-full flex-1 animate-slide-up"
                   >
                     <div v-if="currentSlide.type === 'bullet'">
                       <!-- Bullet + image on the right (optional, based on JSON) -->
                       <div
                         v-if="currentSlide.media"
-                        class="flex flex-col md:flex-row gap-4 md:gap-5 items-start"
+                        class="flex flex-col lg:flex-row gap-6 md:gap-8 items-start"
                       >
-                        <div class="md:w-2/3">
-                          <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm lg:text-base">
+                        <div class="lg:w-2/3">
+                          <ul class="space-y-3 md:space-y-4 text-sm md:text-base lg:text-lg">
                             <li
                               v-for="(item, idx) in currentSlide.items"
                               :key="idx"
-                              class="flex items-start gap-2.5 slide-bullet-item"
+                              class="flex items-start gap-4 slide-bullet-item animate-slide-left"
+                              :style="{ animationDelay: `${idx * 100}ms` }"
                             >
                               <div
-                                class="mt-1.5 h-2 w-2 rounded-full bg-brand-500 flex-shrink-0 shadow-sm"
+                                class="mt-2 h-3 w-3 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 flex-shrink-0 shadow-sm animate-pulse"
                               ></div>
                               <div class="text-slate-800 leading-relaxed font-medium">
                                 {{ item }}
@@ -241,16 +280,16 @@
                         </div>
 
                         <figure
-                          class="md:w-1/3 w-full rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                          class="lg:w-1/3 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col group hover:scale-105"
                         >
                           <img
                             :src="currentSlide.media.src"
                             :alt="currentSlide.media.alt"
-                            class="w-full h-auto object-contain max-h-80"
+                            class="w-full h-auto object-contain max-h-96 transition-transform duration-500 group-hover:scale-110"
                           />
                           <figcaption
                             v-if="currentSlide.media.caption"
-                            class="px-3.5 py-2.5 text-xs md:text-sm text-slate-700 bg-white border-t border-slate-200 font-medium"
+                            class="px-4 py-3 text-sm md:text-base text-slate-700 bg-white border-t border-slate-200 font-medium"
                           >
                             {{ currentSlide.media.caption }}
                           </figcaption>
@@ -259,14 +298,15 @@
 
                       <!-- Bullet only -->
                       <div v-else>
-                        <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm lg:text-base">
+                        <ul class="space-y-3 md:space-y-4 text-sm md:text-base lg:text-lg">
                           <li
                             v-for="(item, idx) in currentSlide.items"
                             :key="idx"
-                            class="flex items-start gap-2 slide-bullet-item"
+                            class="flex items-start gap-4 slide-bullet-item animate-slide-left"
+                            :style="{ animationDelay: `${idx * 100}ms` }"
                           >
                             <div
-                              class="mt-1 h-1.5 w-1.5 rounded-full bg-brand-500 flex-shrink-0 shadow-sm"
+                              class="mt-2 h-3 w-3 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 flex-shrink-0 shadow-sm"
                             ></div>
                             <div class="text-slate-800 leading-relaxed font-medium">
                               {{ item }}
@@ -278,19 +318,22 @@
 
                     <!-- Paragraph slide -->
                     <div v-else-if="currentSlide.type === 'paragraph'">
-                      <p
-                        v-for="(para, idx) in currentSlide.paragraphs"
-                        :key="idx"
-                        class="text-sm md:text-base lg:text-lg text-slate-800 leading-relaxed mb-3 md:mb-4 font-medium slide-paragraph"
-                      >
-                        {{ para }}
-                      </p>
+                      <div class="space-y-4 md:space-y-5">
+                        <p
+                          v-for="(para, idx) in currentSlide.paragraphs"
+                          :key="idx"
+                          class="text-sm md:text-base lg:text-lg text-slate-800 leading-relaxed font-medium slide-paragraph animate-slide-up"
+                          :style="{ animationDelay: `${idx * 200}ms` }"
+                        >
+                          {{ para }}
+                        </p>
+                      </div>
                     </div>
 
                     <!-- Gallery slide -->
                     <div
                       v-else-if="currentSlide.type === 'gallery'"
-                      class="flex flex-col gap-3 md:gap-4"
+                      class="flex flex-col gap-4 md:gap-6 animate-slide-in"
                     >
                       <!-- Gallery Image -->
                       <div class="relative w-full">
@@ -298,13 +341,13 @@
                           <figure
                             v-if="currentGalleryImage"
                             :key="currentGalleryImage.src"
-                            class="w-full rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 shadow-lg"
+                            class="w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500"
                           >
                             <img
                               :src="currentGalleryImage.src"
                               :alt="currentGalleryImage.alt"
-                              class="w-full max-w-5xl mx-auto object-contain"
-                              style="max-height: 600px; height: auto;"
+                              class="w-full max-w-6xl mx-auto object-contain transition-transform duration-500 hover:scale-105"
+                              style="max-height: 520px; height: auto;"
                             />
                           </figure>
                         </transition>
@@ -312,47 +355,47 @@
                         <!-- Gallery navigation arrows -->
                         <button
                           @click.stop="prevImage"
-                          class="gallery-arrow left-2"
+                          class="gallery-arrow left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
                         >
-                          <span v-if="ui &amp;&amp; ui.prevShortLabel">
+                          <span v-if="ui && ui.prevShortLabel" class="text-2xl font-bold text-white drop-shadow-lg">
                             {{ ui.prevShortLabel }}
                           </span>
                         </button>
                         <button
                           @click.stop="nextImage"
-                          class="gallery-arrow right-2"
+                          class="gallery-arrow right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
                         >
-                          <span v-if="ui &amp;&amp; ui.nextShortLabel">
+                          <span v-if="ui && ui.nextShortLabel" class="text-2xl font-bold text-white drop-shadow-lg">
                             {{ ui.nextShortLabel }}
                           </span>
                         </button>
 
                         <!-- Gallery dots -->
                         <div
-                          class="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5"
+                          class="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2"
                         >
                           <button
                             v-for="(img, idx) in currentSlide.gallery.images"
                             :key="img.src + idx"
                             @click.stop="setGalleryIndex(idx)"
-                            class="h-2 rounded-full transition-all duration-200"
+                            class="h-3 rounded-full transition-all duration-300 hover:scale-125"
                             :class="idx === galleryIndex
-                              ? 'w-5 bg-brand-500 shadow-dot'
-                              : 'w-2 bg-slate-400 hover:bg-slate-500'"
+                              ? 'w-6 bg-brand-500 shadow-lg scale-110'
+                              : 'w-3 bg-slate-400/70 hover:bg-slate-500 backdrop-blur-sm'"
                           ></button>
                         </div>
                       </div>
 
-                      <!-- Gallery description below image -->
                       <div
-                        v-if="currentGalleryDescription &amp;&amp; currentGalleryDescription.length"
-                        class="w-full bg-slate-50/50 rounded-xl p-4 md:p-5 border border-slate-200"
+                        v-if="currentGalleryDescription && currentGalleryDescription.length"
+                        class="w-full bg-gradient-to-br from-slate-50/80 to-slate-100/50 rounded-2xl p-6 md:p-8 border border-slate-200 shadow-lg backdrop-blur-sm animate-slide-up"
                       >
-                        <div class="text-sm md:text-base text-slate-700 space-y-2 md:space-y-2.5">
+                        <div class="text-base md:text-lg text-slate-700 space-y-4 md:space-y-5">
                           <p
                             v-for="(para, idx) in currentGalleryDescription"
                             :key="idx"
-                            class="leading-relaxed"
+                            class="leading-relaxed animate-slide-left"
+                            :style="{ animationDelay: `${idx * 150}ms` }"
                           >
                             {{ para }}
                           </p>
@@ -364,43 +407,50 @@
 
                 <!-- Bottom bar: slide indicator + controls -->
                 <div
-                  class="flex-shrink-0 pt-3 md:pt-4 flex items-center justify-between text-xs md:text-sm text-slate-500 border-t border-slate-100"
+                  class="flex-shrink-0 pt-3 md:pt-4 flex items-center justify-between text-xs md:text-sm text-slate-500 border-t border-slate-100 animate-slide-up"
+                  v-if="currentSlide.type !== 'opening'"
                 >
-                  <div class="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-100/70 rounded-lg border border-slate-200">
-                    <span v-if="ui &amp;&amp; ui.slideIndicatorPrefix" class="font-medium text-xs">
+                  <div class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-slate-100/80 to-slate-50/80 rounded-xl border border-slate-200 shadow-sm backdrop-blur-sm">
+                    <span v-if="ui && ui.slideIndicatorPrefix" class="font-semibold text-slate-600 text-sm">
                       {{ ui.slideIndicatorPrefix }}
                     </span>
-                    <span class="font-bold text-brand-500 text-sm md:text-base">
+                    <span class="font-bold text-brand-500 text-xl md:text-2xl">
                       {{ activeSlide + 1 }}
                     </span>
-                    <span v-if="ui &amp;&amp; ui.slideSeparator" class="font-medium">
+                    <span v-if="ui && ui.slideSeparator" class="font-semibold text-slate-400">
                       {{ ui.slideSeparator }}
                     </span>
-                    <span class="font-medium">
+                    <span class="font-medium text-slate-600">
                       {{ slides.length }}
                     </span>
                   </div>
 
-                  <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-4">
                     <button
                       @click.stop="prevSlide"
                       :disabled="activeSlide === 0"
-                      class="px-3 py-1.5 rounded-lg border text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-1.5 shadow-sm"
+                      class="px-5 py-3 rounded-xl border text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-3 shadow-sm hover:shadow-md transform hover:scale-105"
                       :class="activeSlide === 0
                         ? 'border-slate-200 text-slate-300 cursor-not-allowed bg-slate-50'
-                        : 'border-slate-300 text-slate-700 hover:bg-slate-50 hover:shadow hover:border-slate-400'"
+                        : 'border-slate-300 text-slate-700 hover:bg-slate-50 hover:shadow-lg hover:border-slate-400'"
                     >
-                      {{ ui &amp;&amp; ui.prevLabel }}
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                      </svg>
+                      {{ ui && ui.prevLabel }}
                     </button>
                     <button
                       @click.stop="nextSlide"
                       :disabled="activeSlide === slides.length - 1"
-                      class="px-3 py-1.5 rounded-lg border text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-1.5 shadow-md"
+                      class="px-5 py-3 rounded-xl border text-sm md:text-base font-semibold transition-all duration-300 flex items-center gap-3 shadow-lg transform hover:scale-105"
                       :class="activeSlide === slides.length - 1
                         ? 'border-slate-200 text-slate-300 cursor-not-allowed bg-slate-50'
-                        : 'border-brand-500 text-white bg-brand-500 hover:bg-brand-600 hover:shadow-lg hover:scale-105'"
+                        : 'border-brand-500 text-white bg-gradient-to-r from-brand-500 to-brand-600 hover:shadow-xl hover:from-brand-600 hover:to-brand-500'"
                     >
-                      {{ ui &amp;&amp; ui.nextLabel }}
+                      {{ ui && ui.nextLabel }}
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
                     </button>
                   </div>
                 </div>
