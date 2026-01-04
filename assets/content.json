@@ -1,8 +1,8 @@
 {
   "company": {
-    "name": "PT Contoh Teknologi Nusantara",
+    "name": "PT Multi Spunindo Jaya Tbk",
     "logoUrl": "https://images.pexels.com/photos/3184301/pexels-photo-3184301.jpeg?auto=compress&cs=tinysrgb&w=200",
-    "tagline": "Laporan Akhir Magang | Divisi Pengembangan Produk"
+    "tagline": "Divisi MIS (Management Information System)"
   },
   "ui": {
     "nextLabel": "Slide Berikutnya",
@@ -18,13 +18,13 @@
       "id": "perkenalan",
       "type": "bullet",
       "title": "Perkenalan",
-      "subtitle": "Profil singkat mahasiswa magang dan konteks laporan ini",
+      "subtitle": "Profil singkat mahasiswa magang",
       "navLabel": "Perkenalan",
       "items": [
-        "Nama: [Nama Mahasiswa], Program Studi [Program Studi], [Universitas]",
-        "Periode magang: [Bulan] [Tahun] \u2013 [Bulan] [Tahun]",
-        "Penempatan: Divisi Pengembangan Produk, PT Contoh Teknologi Nusantara",
-        "Pembimbing lapangan: [Nama Pembimbing] \u2013 [Jabatan]",
+        "Nama: Moch. Reynald Silva Baktiar, Program Studi D-IV Teknik Informatika",
+        "Periode magang: Agustus 2025 \u2013 Desember 2025",
+        "Penempatan: Divisi MIS,  PT Multi Spunindo Jaya Tbk",
+        "Pembimbing lapangan: Nurfaizin Faiz \u2013 Foreman",
         "Tujuan presentasi: memberikan gambaran menyeluruh mengenai pengalaman dan hasil magang"
       ]
     },
@@ -35,9 +35,9 @@
       "subtitle": "Latar belakang, tujuan, dan ruang lingkup kegiatan magang",
       "navLabel": "Pendahuluan",
       "paragraphs": [
-        "Program magang di PT Contoh Teknologi Nusantara dirancang untuk memberikan pengalaman praktis kepada mahasiswa dalam lingkungan kerja yang dinamis dan berorientasi inovasi.",
-        "Selama periode magang, fokus utama penempatan adalah pada proses pengembangan produk digital, mulai dari tahap analisis kebutuhan, perancangan solusi, hingga pengujian dan dokumentasi.",
-        "Laporan ini merangkum rangkaian aktivitas yang dilakukan, hasil yang dicapai, serta pembelajaran yang diperoleh, sekaligus memberikan gambaran singkat mengenai profil perusahaan tempat magang berlangsung."
+        "Program magang di PT Multi Spunindo Jaya Tbk, khususnya pada Divisi Management Information System (MIS), dirancang untuk memberikan pengalaman kerja praktis kepada mahasiswa dalam lingkungan industri manufaktur yang terstruktur dan berbasis sistem informasi.",
+        "Selama periode magang, fokus utama kegiatan adalah pengembangan sistem koperasi karyawan yang sebelumnya masih dikelola secara manual menggunakan Microsoft Excel, kemudian ditransformasikan menjadi sistem terkomputerisasi yang lebih terintegrasi, efisien, dan akurat. Proses pengembangan meliputi analisis kebutuhan pengguna, perancangan sistem, implementasi, hingga pengujian dan dokumentasi.",
+        "Laporan magang ini merangkum seluruh rangkaian aktivitas yang telah dilakukan, hasil pengembangan sistem koperasi, serta pembelajaran teknis dan non-teknis yang diperoleh selama magang, sekaligus memberikan gambaran singkat mengenai profil dan peran PT Multi Spunindo Jaya Tbk sebagai tempat pelaksanaan magang."
       ]
     },
     {
@@ -47,12 +47,12 @@
       "subtitle": "Gambaran singkat PT Contoh Teknologi Nusantara",
       "navLabel": "Profil Perusahaan",
       "items": [
-        "Bidang usaha: solusi perangkat lunak dan layanan konsultasi transformasi digital.",
-        "Segmentasi klien: perusahaan menengah dan besar di sektor keuangan, manufaktur, dan pemerintahan.",
-        "Produk utama: platform analitik data, sistem manajemen proyek, dan solusi otomasi proses bisnis.",
-        "Nilai utama: kolaborasi, integritas, dan inovasi berkelanjutan.",
-        "Budaya kerja: agile, kolaboratif lintas tim, dan berorientasi pada pembelajaran berkelanjutan."
-      ],
+        "Bidang usaha: produsen bahan nonwoven yang digunakan sebagai bahan baku industri kesehatan, konstruksi, pertanian, otomotif, dan produk konsumen lainnya, berbasis manufaktur tekstil nonwoven B2B. :contentReference[oaicite:0]{index=0}",
+        "Segmentasi klien: perusahaan industri kesehatan (mis. popok, pembalut, masker), konstruksi, agrikultur, otomotif, serta sektor manufaktur yang membutuhkan material nonwoven di dalam produknya. :contentReference[oaicite:1]{index=1}",
+        "Produk utama: lembaran nonwoven berbasis polypropylene, polyester (PET), polyethylene (PE), spunbond, meltblown, dan composite nonwoven yang memiliki berbagai aplikasi industri. :contentReference[oaicite:2]{index=2}",
+        "Nilai utama: komitmen terhadap kualitas tinggi dengan penerapan Total Quality Management (TQM), inovasi berkelanjutan dalam produksi material nonwoven, serta fokus pada keandalan dan konsistensi produk. :contentReference[oaicite:3]{index=3}",
+        "Budaya kerja: pemanfaatan fasilitas modern dan sistem manajemen mutu, kolaborasi antar tim produksi dan teknis, serta orientasi pada pengembangan kompetensi karyawan untuk mendukung operasi 24 jam non-stop. :contentReference[oaicite:4]{index=4}"
+        ],
       "media": {
         "src": "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800",
         "alt": "Ilustrasi kantor modern dan tim profesional",
@@ -66,11 +66,25 @@
       "subtitle": "Garis besar aktivitas dan tanggung jawab utama",
       "navLabel": "Kegiatan Magang",
       "items": [
-        "Mendukung analisis kebutuhan fitur baru bersama tim produk dan pengembang.",
-        "Membantu penyusunan dokumentasi teknis dan user guide sederhana untuk fitur yang dikembangkan.",
-        "Berpartisipasi dalam daily stand-up dan sesi review sprint untuk memahami alur kerja agile.",
-        "Melakukan pengujian fungsional dasar (smoke test) pada modul-modul yang dikerjakan tim.",
-        "Mengembangkan prototype internal sederhana untuk mengeksplorasi ide atau konsep fitur baru."
+        "Melakukan analisis kebutuhan sistem koperasi melalui meeting dengan pengurus koperasi untuk menggali proses bisnis nyata, termasuk simpanan, pinjaman, perhitungan SHU, dan potongan gaji karyawan.",
+        "Merancang dan mengembangkan sistem koperasi terintegrasi yang sebelumnya dikelola secara manual menggunakan Excel, mencakup pengelolaan anggota, simpanan, pinjaman, angsuran, dan SHU.",
+        "Mengimplementasikan perhitungan otomatis Sisa Hasil Usaha (SHU) serta perhitungan potongan gaji karyawan setiap bulan sebagai data pendukung integrasi dengan sistem HRIS.",
+        "Membangun struktur database sistem koperasi yang terintegrasi dan konsisten untuk menjamin keakuratan data transaksi dan laporan.",
+        "Melaksanakan User Acceptance Test (UAT) bersama pengurus koperasi dengan menggunakan data riil untuk memastikan sistem telah sesuai dengan kebutuhan pengguna, mudah digunakan, dan menghasilkan perhitungan yang akurat.",
+        "Melakukan perbaikan dan penyesuaian sistem berdasarkan hasil UAT dan umpan balik pengguna sebelum sistem dinyatakan siap digunakan."
+        ]
+    },
+    {
+      "id": "tugas-khusus",
+      "type": "bullet",
+      "title": "Tugas Khusus",
+      "subtitle": "Penugasan khusus selama magang di Divisi MIS",
+      "navLabel": "Tugas Khusus",
+      "items": [
+        "Mengimplementasikan penyesuaian atau fitur tertentu pada sistem koperasi sesuai permintaan khusus pengurus koperasi maupun Divisi MIS.",
+        "Menyusun laporan atau dashboard khusus untuk mendukung pengambilan keputusan manajemen berdasarkan data transaksi koperasi.",
+        "Mendokumentasikan secara rinci alur proses, aturan perhitungan, dan panduan penggunaan untuk penugasan khusus yang dikerjakan.",
+        "Melaksanakan penugasan tambahan yang diberikan langsung oleh pembimbing lapangan terkait kebutuhan sistem informasi di PT Multi Spunindo Jaya Tbk."
       ]
     },
     {
@@ -118,12 +132,13 @@
       "subtitle": "Kontribusi konkret selama masa magang",
       "navLabel": "Hasil / Output",
       "items": [
-        "Menyusun rancangan awal dan dokumentasi spesifikasi sederhana untuk satu modul fitur aplikasi internal.",
-        "Menyelesaikan beberapa perbaikan minor (bug fixes) pada tampilan antarmuka berdasarkan hasil pengujian.",
-        "Memberikan masukan usability dari perspektif pengguna baru yang digunakan sebagai bahan perbaikan desain.",
-        "Menghasilkan ringkasan dokumentasi teknis langkah demi langkah untuk membantu onboarding anggota tim baru.",
-        "Menyusun laporan dan presentasi akhir magang sebagai referensi internal dan kebutuhan akademik."
-      ]
+        "Menghasilkan sistem koperasi berbasis digital yang menggantikan proses manual berbasis Excel, mencakup pengelolaan data anggota, simpanan, pinjaman, angsuran, dan laporan.",
+        "Mengimplementasikan fitur perhitungan otomatis Sisa Hasil Usaha (SHU) berdasarkan data transaksi koperasi.",
+        "Menyusun mekanisme perhitungan potongan gaji karyawan setiap bulan sebagai data pendukung untuk integrasi dengan sistem HRIS.",
+        "Membangun dan mengelola database sistem koperasi yang terstruktur untuk memastikan konsistensi dan keakuratan data.",
+        "Melaksanakan User Acceptance Test (UAT) bersama pengurus koperasi dan melakukan penyempurnaan sistem berdasarkan umpan balik pengguna.",
+        "Menyusun dokumentasi sistem dan laporan akhir magang sebagai acuan penggunaan sistem dan kebutuhan akademik."
+        ]
     },
     {
       "id": "kesimpulan",
@@ -131,11 +146,12 @@
       "title": "Kesimpulan",
       "subtitle": "Ringkasan pembelajaran dan manfaat program magang",
       "navLabel": "Kesimpulan",
-      "paragraphs": [
-        "Program magang di PT Contoh Teknologi Nusantara memberikan kesempatan untuk menerapkan pengetahuan akademik dalam konteks proyek nyata, sekaligus memahami dinamika kerja tim di industri teknologi.",
-        "Melalui keterlibatan langsung dalam aktivitas pengembangan produk, mahasiswa memperoleh pemahaman yang lebih baik mengenai siklus hidup pengembangan perangkat lunak, komunikasi lintas fungsi, dan pentingnya dokumentasi yang terstruktur.",
-        "Pengalaman ini diharapkan menjadi bekal berharga untuk langkah karier selanjutnya, baik dalam dunia profesional maupun pengembangan kompetensi akademik."
-      ]
+     "paragraphs": [
+        "Pelaksanaan program magang di PT Multi Spunindo Jaya Tbk Divisi MIS memberikan pengalaman nyata dalam pengembangan sistem informasi yang digunakan langsung dalam proses operasional perusahaan.",
+        "Melalui pengembangan sistem koperasi yang sebelumnya dikelola secara manual menggunakan Excel, kegiatan magang ini berhasil menghasilkan solusi digital yang mencakup pengelolaan data anggota, simpanan, pinjaman, perhitungan SHU, serta potongan gaji karyawan yang mendukung kebutuhan HRIS.",
+        "Proses analisis kebutuhan, perancangan database, implementasi sistem, hingga pelaksanaan User Acceptance Test (UAT) bersama pengurus koperasi memberikan pemahaman menyeluruh mengenai siklus pengembangan sistem berbasis kebutuhan pengguna nyata.",
+        "Secara keseluruhan, program magang ini tidak hanya meningkatkan kompetensi teknis dalam pengembangan sistem informasi, tetapi juga melatih kemampuan komunikasi, analisis bisnis, dan penyelesaian masalah yang menjadi bekal penting untuk pengembangan karier di bidang teknologi informasi."
+        ]
     },
     {
       "id": "terima-kasih",
