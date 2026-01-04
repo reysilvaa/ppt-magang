@@ -3,43 +3,139 @@
   display: none;
 }
 
+/* Apply Inter font globally */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
 /* Background gradient halus untuk halaman (light) */
 .bg-deck-gradient {
-  background: radial-gradient(circle at top, #e0f7f7, #f9fafb 55%);
+  background: radial-gradient(ellipse at top, #d1f2f2, #e8f4f5 40%, #f9fafb 75%);
 }
 
-/* Shadow lembut untuk deck (light) */
+/* Shadow dramatis untuk deck (PowerPoint style) */
 .shadow-deck {
   box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.08),
-    0 0 0 1px rgba(148, 163, 184, 0.16);
+    0 25px 60px -12px rgba(2, 130, 132, 0.12),
+    0 8px 20px -6px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(148, 163, 184, 0.12);
 }
 
-/* Shadow logo */
+/* Shadow logo dengan ring effect */
 .shadow-logo {
-  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5),
-    0 8px 18px rgba(15, 23, 42, 0.15);
+  box-shadow: 
+    0 4px 14px rgba(2, 130, 132, 0.25),
+    0 2px 6px rgba(15, 23, 42, 0.12);
 }
 
-/* Frame animasi halus */
+/* Enhanced logo shadow for header */
+.shadow-logo-enhanced {
+  box-shadow: 
+    0 8px 20px rgba(2, 130, 132, 0.3),
+    0 4px 10px rgba(15, 23, 42, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile menu transition */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top;
+}
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: scaleY(0.95);
+}
+
+/* Hide scrollbar for horizontal navigation */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Slide title accent bar */
+.slide-header-container {
+  position: relative;
+  padding-left: 16px;
+}
+
+.slide-title-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #028284 0%, #02696b 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(2, 130, 132, 0.3);
+}
+
+/* Bullet item fade-in animation */
+.slide-bullet-item {
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.slide-bullet-item:nth-child(1) { animation-delay: 0.05s; }
+.slide-bullet-item:nth-child(2) { animation-delay: 0.1s; }
+.slide-bullet-item:nth-child(3) { animation-delay: 0.15s; }
+.slide-bullet-item:nth-child(4) { animation-delay: 0.2s; }
+.slide-bullet-item:nth-child(5) { animation-delay: 0.25s; }
+.slide-bullet-item:nth-child(6) { animation-delay: 0.3s; }
+.slide-bullet-item:nth-child(7) { animation-delay: 0.35s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Paragraph subtle animation */
+.slide-paragraph {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Frame animasi halus dengan scale effect */
+/* Frame animasi halus dengan scale effect */
 .deck-frame {
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .deck-frame:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.002);
   box-shadow:
-    0 22px 55px rgba(15, 23, 42, 0.14),
-    0 0 0 1px rgba(148, 163, 184, 0.24);
+    0 30px 70px -15px rgba(2, 130, 132, 0.15),
+    0 12px 28px -8px rgba(15, 23, 42, 0.1),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
 }
 
-/* Loader simple, tanpa teks */
+/* Loader modern dengan pulsing animation */
 .loader-pulse {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
-  border: 2px solid rgba(148, 163, 184, 0.3);
-  border-top-color: rgba(2, 130, 132, 0.95);
-  animation: spin 0.9s linear infinite;
+  border: 3px solid rgba(148, 163, 184, 0.25);
+  border-top-color: #028284;
+  animation: spin 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  box-shadow: 0 4px 12px rgba(2, 130, 132, 0.2);
 }
 @keyframes spin {
   to {
@@ -47,66 +143,69 @@
   }
 }
 
-/* Slide transition */
+/* Slide transition - smooth and elegant */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: opacity 200ms ease, transform 200ms ease;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .slide-fade-enter-from {
   opacity: 0;
-  transform: translateY(4px) scale(0.99);
+  transform: translateY(12px) scale(0.98);
 }
 .slide-fade-leave-to {
   opacity: 0;
-  transform: translateY(-4px) scale(0.99);
+  transform: translateY(-12px) scale(0.98);
 }
 
-/* Gallery image fade */
+/* Gallery image fade - smoother */
 .image-fade-enter-active,
 .image-fade-leave-active {
-  transition: opacity 180ms ease;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .image-fade-enter-from,
 .image-fade-leave-to {
   opacity: 0;
 }
 
-/* Gallery arrows */
+/* Gallery arrows - enhanced PowerPoint style */
 .gallery-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.9);
-  background: rgba(255, 255, 255, 0.96);
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(255, 255, 255, 0.98);
   color: rgb(51, 65, 85);
-  font-size: 0.65rem;
-  letter-spacing: 0.03em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(8px);
-  transition: background 140ms ease, transform 120ms ease,
-    border-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .gallery-arrow:hover {
   background: #028284;
   border-color: #02696b;
   color: #ffffff;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
-  transform: translateY(-50%) translateY(-1px);
+  box-shadow: 0 8px 20px rgba(2, 130, 132, 0.35);
+  transform: translateY(-50%) translateY(-2px) scale(1.05);
 }
 .gallery-arrow:active {
-  transform: translateY(-50%) translateY(0);
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+  transform: translateY(-50%) translateY(0) scale(0.98);
+  box-shadow: 0 4px 10px rgba(2, 130, 132, 0.25);
 }
 
-/* Dot shadow */
+/* Dot shadow - enhanced glow */
 .shadow-dot {
-  box-shadow: 0 0 0 3px rgba(2, 130, 132, 0.35);
+  box-shadow: 0 0 0 4px rgba(2, 130, 132, 0.25),
+              0 2px 8px rgba(2, 130, 132, 0.4);
 }
 
 /* Print-friendly layout (menggunakan orientasi landscape) */

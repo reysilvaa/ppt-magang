@@ -9,6 +9,7 @@ createApp({
       slides: [],
       activeSlide: 0,
       galleryIndex: 0,
+      showMobileMenu: false,
     };
   },
   computed: {
@@ -82,6 +83,20 @@ createApp({
       if (idx >= 0 && idx < imgs.length) {
         this.galleryIndex = idx;
       }
+    },
+    isHeader(item) {
+      // Define headers that should be styled as h3
+      const headers = [
+        'Data Pribadi',
+        'Periode Magang', 
+        'Penempatan',
+        'Pembimbing Lapangan',
+        'Tujuan Presentasi'
+      ];
+      return headers.includes(item);
+    },
+    toggleMobileMenu() {
+      this.showMobileMenu = !this.showMobileMenu;
     },
     enterFullscreen() {
       const root = document.documentElement;

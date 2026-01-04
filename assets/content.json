@@ -1,8 +1,8 @@
 {
   "company": {
     "name": "PT Multi Spunindo Jaya Tbk",
-    "logoUrl": "https://images.pexels.com/photos/3184301/pexels-photo-3184301.jpeg?auto=compress&cs=tinysrgb&w=200",
-    "tagline": "Divisi MIS (Management Information System)"
+    "logoUrl": "assets/img/logo.png",
+    "tagline": "Magang MIS (Management Information System)"
   },
   "ui": {
     "nextLabel": "Slide Berikutnya",
@@ -14,6 +14,24 @@
     "slideSeparator": "/"
   },
   "slides": [
+    {
+      "id": "opening",
+      "type": "opening",
+      "title": "Laporan Presentasi Magang",
+      "subtitle": "Program Magang Divisi MIS - PT Multi Spunindo Jaya Tbk",
+      "navLabel": "Opening",
+      "items": [
+        "Moch. Reynald Silva Baktiar",
+        "Program Studi D-IV Teknik Informatika",
+        "Politeknik Negeri Malang",
+        "Periode: Agustus 2025 - Desember 2025"
+      ],
+      "media": {
+        "src": "assets/img/logo.png",
+        "alt": "Logo PT Multi Spunindo Jaya Tbk",
+        "caption": "PT Multi Spunindo Jaya Tbk - Divisi MIS"
+      }
+    },
     {
       "id": "perkenalan",
       "type": "bullet",
@@ -44,17 +62,17 @@
       "id": "profil-perusahaan",
       "type": "bullet",
       "title": "Profil Perusahaan",
-      "subtitle": "Gambaran singkat PT Contoh Teknologi Nusantara",
+      "subtitle": "Gambaran singkat PT Multi Spunindo Jaya Tbk",
       "navLabel": "Profil Perusahaan",
       "items": [
-        "Bidang usaha: produsen bahan nonwoven yang digunakan sebagai bahan baku industri kesehatan, konstruksi, pertanian, otomotif, dan produk konsumen lainnya, berbasis manufaktur tekstil nonwoven B2B. :contentReference[oaicite:0]{index=0}",
-        "Segmentasi klien: perusahaan industri kesehatan (mis. popok, pembalut, masker), konstruksi, agrikultur, otomotif, serta sektor manufaktur yang membutuhkan material nonwoven di dalam produknya. :contentReference[oaicite:1]{index=1}",
-        "Produk utama: lembaran nonwoven berbasis polypropylene, polyester (PET), polyethylene (PE), spunbond, meltblown, dan composite nonwoven yang memiliki berbagai aplikasi industri. :contentReference[oaicite:2]{index=2}",
-        "Nilai utama: komitmen terhadap kualitas tinggi dengan penerapan Total Quality Management (TQM), inovasi berkelanjutan dalam produksi material nonwoven, serta fokus pada keandalan dan konsistensi produk. :contentReference[oaicite:3]{index=3}",
-        "Budaya kerja: pemanfaatan fasilitas modern dan sistem manajemen mutu, kolaborasi antar tim produksi dan teknis, serta orientasi pada pengembangan kompetensi karyawan untuk mendukung operasi 24 jam non-stop. :contentReference[oaicite:4]{index=4}"
+        "Bidang usaha: produsen bahan nonwoven yang digunakan sebagai bahan baku industri kesehatan, konstruksi, pertanian, otomotif, dan produk konsumen lainnya, berbasis manufaktur tekstil nonwoven B2B.",
+        "Segmentasi klien: perusahaan industri kesehatan (mis. popok, pembalut, masker), konstruksi, agrikultur, otomotif, serta sektor manufaktur yang membutuhkan material nonwoven di dalam produknya.",
+        "Produk utama: lembaran nonwoven berbasis polypropylene, polyester (PET), polyethylene (PE), spunbond, meltblown, dan composite nonwoven yang memiliki berbagai aplikasi industri.",
+        "Nilai utama: komitmen terhadap kualitas tinggi dengan penerapan Total Quality Management (TQM), inovasi berkelanjutan dalam produksi material nonwoven, serta fokus pada keandalan dan konsistensi produk.",
+        "Budaya kerja: pemanfaatan fasilitas modern dan sistem manajemen mutu, kolaborasi antar tim produksi dan teknis, serta orientasi pada pengembangan kompetensi karyawan untuk mendukung operasi 24 jam non-stop."
         ],
       "media": {
-        "src": "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "src": "assets/img/profile.png",
         "alt": "Ilustrasi kantor modern dan tim profesional",
         "caption": "Ilustrasi lingkungan kerja modern yang mencerminkan budaya kolaboratif dan fokus pada pengembangan solusi teknologi."
       }
@@ -84,7 +102,8 @@
         "Mengimplementasikan penyesuaian atau fitur tertentu pada sistem koperasi sesuai permintaan khusus pengurus koperasi maupun Divisi MIS.",
         "Menyusun laporan atau dashboard khusus untuk mendukung pengambilan keputusan manajemen berdasarkan data transaksi koperasi.",
         "Mendokumentasikan secara rinci alur proses, aturan perhitungan, dan panduan penggunaan untuk penugasan khusus yang dikerjakan.",
-        "Melaksanakan penugasan tambahan yang diberikan langsung oleh pembimbing lapangan terkait kebutuhan sistem informasi di PT Multi Spunindo Jaya Tbk."
+        "Melaksanakan penugasan tambahan yang diberikan langsung oleh pembimbing lapangan terkait kebutuhan sistem informasi di PT Multi Spunindo Jaya Tbk.",
+        "Membuat Artisan CLI command untuk MSJFramework guna mempermudah workflow (RBAC, routing, layouting UI, dan konfigurasi lainnya) yang sebelumnya sulit ditangani melalui UI superadmin." 
       ]
     },
     {
@@ -94,45 +113,75 @@
       "subtitle": "Output nyata dari penugasan khusus selama magang",
       "navLabel": "Hasil Tugas Khusus",
       "items": [
-        "Berhasil mengimplementasikan fitur atau penyesuaian khusus pada sistem koperasi yang menjawab kebutuhan spesifik pengurus koperasi dan Divisi MIS.",
-        "Menghasilkan laporan atau dashboard khusus yang membantu manajemen memantau transaksi koperasi, tren pinjaman, dan distribusi SHU dengan lebih mudah.",
-        "Menyerahkan dokumentasi lengkap berupa SOP, flowchart proses, dan panduan penggunaan untuk mempermudah pengurus koperasi dan tim MIS dalam mengoperasikan dan memelihara fitur khusus tersebut.",
-        "Memberikan rekomendasi perbaikan dan pengembangan lanjutan berdasarkan hasil pengujian dan umpan balik dari pengguna terkait penugasan khusus yang dikerjakan."
-      ]
+        "Menyerahkan dokumentasi lengkap berupa SOP, flowchart proses, dan panduan penggunaan untuk mempermudah developer dalam mengoperasikan dan memelihara Artisan CLI command MSJFramework.",
+        "Memberikan rekomendasi perbaikan dan pengembangan lanjutan berdasarkan hasil pengujian dan umpan balik dari pengguna terkait penugasan khusus yang dikerjakan.",
+        "Mengembangkan dan menguji Artisan CLI command yang mengotomatisasi pengaturan RBAC, routing, dan layout UI MSJFramework sehingga mempercepat deployment dan mengurangi kesalahan manual."
+      ],
+      "media": {
+        "src": "assets/img/7.png",
+        "alt": "Artisan Command CLI MSJFramework",
+        "caption": "Pengembangan Artisan Command CLI untuk mempermudah workflow MSJFramework"
+      }
     },
     {
       "id": "galeri-kegiatan",
       "type": "gallery",
       "title": "Galeri Kegiatan Magang",
-      "subtitle": "Cuplikan aktivitas dan suasana kerja selama magang",
+      "subtitle": "Dokumentasi aktivitas dan suasana kerja selama magang",
       "navLabel": "Galeri",
       "gallery": {
         "images": [
           {
-            "src": "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=800",
-            "alt": "Diskusi dengan tim pengembangan",
-            "caption": "Diskusi rutin dengan tim pengembangan untuk membahas kebutuhan fitur dan pembagian tugas.",
+            "src": "assets/img/1.jpeg",
+            "alt": "Sesi praktikum di lab komputer",
+            "caption": "Suasana lab komputer saat sesi pembelajaran dan praktikum bersama mahasiswa Politeknik Negeri Malang",
             "description": [
-              "Galeri ini menampilkan beberapa momen penting selama program magang, mulai dari sesi diskusi dengan tim, keterlibatan dalam pertemuan proyek, hingga suasana kerja sehari-hari di kantor.",
-              "Foto ini menggambarkan bagaimana diskusi teknis membantu mahasiswa memahami alur kerja pengembangan fitur secara langsung."
+              "Perkenalan magang (induksi): sesi orientasi di mana pihak PT Multi Spunindo Jaya Tbk menjelaskan peraturan magang, tata tertib, keselamatan kerja, dan fasilitas yang tersedia bagi peserta magang."
             ]
           },
           {
-            "src": "https://images.pexels.com/photos/3184309/pexels-photo-3184309.jpeg?auto=compress&cs=tinysrgb&w=800",
-            "alt": "Sesi kolaborasi di ruang kerja",
-            "caption": "Sesi kolaborasi lintas divisi untuk menyelaraskan solusi teknis dengan kebutuhan bisnis.",
+            "src": "assets/img/2.jpeg",
+            "alt": "Presentasi Laravel Framework",
+            "caption": "Video YouTube 'Pendahuluan Framework Laravel' oleh Ti Intro - Belajar Laravel",
             "description": [
-              "Foto ini menonjolkan suasana kerja yang kolaboratif, di mana mahasiswa magang dapat berdiskusi langsung dengan berbagai peran, mulai dari analis bisnis hingga developer.",
-              "Melalui sesi seperti ini, mahasiswa belajar bagaimana ide diterjemahkan menjadi solusi yang relevan dengan kebutuhan klien."
+              "Sesi pembelajaran Laravel yang bertujuan mempermudah pemahaman terhadap framework internal perusahaan (MSJFramework) yang dibangun di atas Laravel."
             ]
           },
           {
-            "src": "https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=800",
-            "alt": "Presentasi hasil sprint",
-            "caption": "Presentasi singkat hasil sprint di hadapan tim untuk mendapatkan umpan balik dan arahan lanjutan.",
+            "src": "assets/img/3.jpeg",
+            "alt": "Perencaanaan Proyek ",
+            "caption": "Proses coding Laravel - menampilkan konfigurasi routing dan middleware authentication",
             "description": [
-              "Dokumentasi presentasi hasil sprint memberikan gambaran mengenai pentingnya komunikasi progres kerja kepada seluruh anggota tim.",
-              "Pada kesempatan seperti ini, mahasiswa belajar menerima umpan balik secara konstruktif dan menindaklanjutinya dalam perbaikan berikutnya."
+              "Mengatur timeline pengerjaan proyek koperasi: perencanaan milestone, pembagian tugas, dan estimasi waktu untuk setiap fase pengembangan.",
+              "Dokumentasi ini membantu koordinasi tim, monitoring progress, dan validasi hasil terhadap kebutuhan pengguna."
+            ]
+          },
+          {
+            "src": "assets/img/4.jpg",
+            "alt": "Sesi penjelasan sistem di whiteboard",
+            "caption": "Penjelasan konsep 'Debit Pinjaman' dan struktur data EPS-Pinjaman menggunakan whiteboard",
+            "description": [
+              "Meeting lanjutan: diskusi dengan pembimbing setelah pertemuan dengan pengurus koperasi untuk menyampaikan hasil meeting user dan merumuskan langkah teknis yang akan diimplementasikan.",
+              "Pembahasan mencakup prioritas fitur, penyesuaian skema data, serta pembagian tugas teknis untuk tim pengembang agar hasil meeting dapat diterjemahkan menjadi solusi yang dapat di-deploy."
+            ]
+          },
+          {
+            "src": "assets/img/5.jpg",
+            "alt": "Cuplikan MSJ Koperasi - Dashboard",
+            "caption": "Cuplikan tampilan fitur utama pada aplikasi MSJ Koperasi (MSJKoperasi)",
+            "description": [
+              "Cuplikan tampilan dari fitur pada aplikasi MSJ Koperasi (MSJKoperasi) — contoh tata letak dashboard dan widget ringkasan.",
+              "Detail transaksi telah disamarkan untuk tujuan presentasi dan privasi data pengguna."
+            ]
+          },
+          {
+            "src": "assets/img/6.png",
+            "alt": "Artisan Command CLI MSJFramework",
+            "caption": "Pengembangan Artisan Command CLI untuk mempermudah workflow MSJFramework",
+            "description": [
+              "Pengembangan Artisan Command CLI yang dibuat untuk mempermudah workflow MSJFramework dalam pengaturan RBAC, routing, layouting UI, dan konfigurasi lainnya.",
+              "Command CLI ini menggantikan proses manual yang sebelumnya harus dilakukan melalui UI superadmin web, membuat workflow menjadi lebih efisien dan mudah diingat.",
+              "Flow melalui CLI ini bersifat berurutan, tidak seperti pada tampilan web superadmin yang memerlukan pengurutan manual dan membutuhkan waktu lebih lama untuk training karyawan atau developer baru."
             ]
           }
         ]
@@ -173,7 +222,7 @@
       "subtitle": "Apresiasi kepada perusahaan, pembimbing, dan tim terkait",
       "navLabel": "Terima Kasih",
       "items": [
-        "Terima kasih kepada manajemen PT Contoh Teknologi Nusantara atas kesempatan magang yang diberikan.",
+        "Terima kasih kepada manajemen PT Multi Spunindo Jaya Tbk atas kesempatan magang yang diberikan.",
         "Apresiasi kepada pembimbing lapangan dan seluruh anggota tim atas arahan, dukungan, dan kepercayaan selama proses magang.",
         "Ucapan terima kasih kepada dosen pembimbing dan pihak kampus yang memfasilitasi program magang ini.",
         "Harapan untuk dapat terus menjaga hubungan baik dan menjalin kolaborasi di masa mendatang."
