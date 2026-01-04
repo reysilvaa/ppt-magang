@@ -88,6 +88,19 @@
       ]
     },
     {
+      "id": "hasil-tugas-khusus",
+      "type": "bullet",
+      "title": "Hasil Tugas Khusus",
+      "subtitle": "Output nyata dari penugasan khusus selama magang",
+      "navLabel": "Hasil Tugas Khusus",
+      "items": [
+        "Berhasil mengimplementasikan fitur atau penyesuaian khusus pada sistem koperasi yang menjawab kebutuhan spesifik pengurus koperasi dan Divisi MIS.",
+        "Menghasilkan laporan atau dashboard khusus yang membantu manajemen memantau transaksi koperasi, tren pinjaman, dan distribusi SHU dengan lebih mudah.",
+        "Menyerahkan dokumentasi lengkap berupa SOP, flowchart proses, dan panduan penggunaan untuk mempermudah pengurus koperasi dan tim MIS dalam mengoperasikan dan memelihara fitur khusus tersebut.",
+        "Memberikan rekomendasi perbaikan dan pengembangan lanjutan berdasarkan hasil pengujian dan umpan balik dari pengguna terkait penugasan khusus yang dikerjakan."
+      ]
+    },
+    {
       "id": "galeri-kegiatan",
       "type": "gallery",
       "title": "Galeri Kegiatan Magang",
