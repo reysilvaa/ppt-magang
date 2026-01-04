@@ -52,7 +52,12 @@
         "Produk utama: platform analitik data, sistem manajemen proyek, dan solusi otomasi proses bisnis.",
         "Nilai utama: kolaborasi, integritas, dan inovasi berkelanjutan.",
         "Budaya kerja: agile, kolaboratif lintas tim, dan berorientasi pada pembelajaran berkelanjutan."
-      ]
+      ],
+      "media": {
+        "src": "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "alt": "Ilustrasi kantor modern dan tim profesional",
+        "caption": "Ilustrasi lingkungan kerja modern yang mencerminkan budaya kolaboratif dan fokus pada pengembangan solusi teknologi."
+      }
     },
     {
       "id": "kegiatan-magang-garis-besar",
