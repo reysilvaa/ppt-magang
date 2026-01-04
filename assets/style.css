@@ -3,42 +3,42 @@
   display: none;
 }
 
-/* Background gradient halus untuk halaman */
+/* Background gradient halus untuk halaman (light) */
 .bg-deck-gradient {
-  background: radial-gradient(circle at top, #0f172a, #020617 55%);
+  background: radial-gradient(circle at top, #e0f7f7, #f9fafb 55%);
 }
 
-/* Shadow lembut untuk deck */
+/* Shadow lembut untuk deck (light) */
 .shadow-deck {
   box-shadow:
-    0 24px 60px rgba(15, 23, 42, 0.8),
-    0 0 0 1px rgba(148, 163, 184, 0.12);
+    0 18px 40px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(148, 163, 184, 0.16);
 }
 
 /* Shadow logo */
 .shadow-logo {
-  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35),
-    0 12px 30px rgba(15, 23, 42, 0.7);
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5),
+    0 8px 18px rgba(15, 23, 42, 0.15);
 }
 
 /* Frame animasi halus */
 .deck-frame {
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .deck-frame:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow:
-    0 28px 80px rgba(15, 23, 42, 0.95),
-    0 0 0 1px rgba(148, 163, 184, 0.15);
+    0 22px 55px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(148, 163, 184, 0.24);
 }
 
 /* Loader simple, tanpa teks */
 .loader-pulse {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   border: 2px solid rgba(148, 163, 184, 0.3);
-  border-top-color: rgba(59, 130, 246, 0.9);
+  border-top-color: rgba(2, 130, 132, 0.95);
   animation: spin 0.9s linear infinite;
 }
 @keyframes spin {
@@ -50,21 +50,21 @@
 /* Slide transition */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 .slide-fade-enter-from {
   opacity: 0;
-  transform: translateY(6px) scale(0.99);
+  transform: translateY(4px) scale(0.99);
 }
 .slide-fade-leave-to {
   opacity: 0;
-  transform: translateY(-6px) scale(0.99);
+  transform: translateY(-4px) scale(0.99);
 }
 
 /* Gallery image fade */
 .image-fade-enter-active,
 .image-fade-leave-active {
-  transition: opacity 200ms ease;
+  transition: opacity 180ms ease;
 }
 .image-fade-enter-from,
 .image-fade-leave-to {
@@ -76,11 +76,11 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding: 0.3rem 0.5rem;
+  padding: 0.25rem 0.55rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  background: rgba(15, 23, 42, 0.85);
-  color: rgb(226, 232, 240);
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  color: rgb(51, 65, 85);
   font-size: 0.65rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -89,22 +89,24 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
-  transition: background 160ms ease, transform 120ms ease,
-    border-color 160ms ease, color 160ms ease;
+  transition: background 140ms ease, transform 120ms ease,
+    border-color 140ms ease, color 140ms ease, box-shadow 140ms ease;
 }
 .gallery-arrow:hover {
-  background: rgba(30, 64, 175, 0.95);
-  border-color: rgba(129, 140, 248, 0.9);
-  color: #f9fafb;
+  background: #028284;
+  border-color: #02696b;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
   transform: translateY(-50%) translateY(-1px);
 }
 .gallery-arrow:active {
   transform: translateY(-50%) translateY(0);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
 }
 
 /* Dot shadow */
 .shadow-dot {
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 0 3px rgba(2, 130, 132, 0.35);
 }
 
 /* Print-friendly layout (menggunakan orientasi landscape) */
