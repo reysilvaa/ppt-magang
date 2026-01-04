@@ -74,26 +74,34 @@
       "title": "Galeri Kegiatan Magang",
       "subtitle": "Cuplikan aktivitas dan suasana kerja selama magang",
       "navLabel": "Galeri",
-      "description": [
-        "Galeri ini menampilkan beberapa momen penting selama program magang, mulai dari sesi diskusi dengan tim, keterlibatan dalam pertemuan proyek, hingga suasana kerja sehari-hari di kantor.",
-        "Foto-foto ini menggambarkan lingkungan kerja yang kolaboratif, terbuka terhadap ide baru, dan mendukung proses belajar mahasiswa."
-      ],
       "gallery": {
         "images": [
           {
             "src": "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=800",
             "alt": "Diskusi dengan tim pengembangan",
-            "caption": "Diskusi rutin dengan tim pengembangan untuk membahas kebutuhan fitur dan pembagian tugas."
+            "caption": "Diskusi rutin dengan tim pengembangan untuk membahas kebutuhan fitur dan pembagian tugas.",
+            "description": [
+              "Galeri ini menampilkan beberapa momen penting selama program magang, mulai dari sesi diskusi dengan tim, keterlibatan dalam pertemuan proyek, hingga suasana kerja sehari-hari di kantor.",
+              "Foto ini menggambarkan bagaimana diskusi teknis membantu mahasiswa memahami alur kerja pengembangan fitur secara langsung."
+            ]
           },
           {
             "src": "https://images.pexels.com/photos/3184309/pexels-photo-3184309.jpeg?auto=compress&cs=tinysrgb&w=800",
             "alt": "Sesi kolaborasi di ruang kerja",
-            "caption": "Sesi kolaborasi lintas divisi untuk menyelaraskan solusi teknis dengan kebutuhan bisnis."
+            "caption": "Sesi kolaborasi lintas divisi untuk menyelaraskan solusi teknis dengan kebutuhan bisnis.",
+            "description": [
+              "Foto ini menonjolkan suasana kerja yang kolaboratif, di mana mahasiswa magang dapat berdiskusi langsung dengan berbagai peran, mulai dari analis bisnis hingga developer.",
+              "Melalui sesi seperti ini, mahasiswa belajar bagaimana ide diterjemahkan menjadi solusi yang relevan dengan kebutuhan klien."
+            ]
           },
           {
             "src": "https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg?auto=compress&cs=tinysrgb&w=800",
             "alt": "Presentasi hasil sprint",
-            "caption": "Presentasi singkat hasil sprint di hadapan tim untuk mendapatkan umpan balik dan arahan lanjutan."
+            "caption": "Presentasi singkat hasil sprint di hadapan tim untuk mendapatkan umpan balik dan arahan lanjutan.",
+            "description": [
+              "Dokumentasi presentasi hasil sprint memberikan gambaran mengenai pentingnya komunikasi progres kerja kepada seluruh anggota tim.",
+              "Pada kesempatan seperti ini, mahasiswa belajar menerima umpan balik secara konstruktif dan menindaklanjutinya dalam perbaikan berikutnya."
+            ]
           }
         ]
       }

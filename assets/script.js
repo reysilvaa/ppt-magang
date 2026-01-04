@@ -23,6 +23,11 @@ createApp({
       const images = this.currentSlide.gallery?.images || [];
       return images[this.galleryIndex] || null;
     },
+    currentGalleryDescription() {
+      if (!this.isGallerySlide) return [];
+      const img = this.currentGalleryImage;
+      return (img && img.description) || [];
+    },
   },
   methods: {
     nextSlide() {
