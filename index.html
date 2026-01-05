@@ -181,10 +181,16 @@
           v-else
           class="w-full flex items-center justify-center relative z-10"
         >
-          <div
-            class="deck-frame w-full max-w-[95vw] aspect-[16/9] max-h-[calc(100vh-120px)] rounded-3xl md:rounded-[2rem] overflow-hidden relative shadow-deck bg-gradient-to-br from-white via-white to-slate-50/30 border border-slate-200/80 hover:shadow-2xl transition-all duration-500 group"
-            @click="handleDeckClick"
-          >
+            <div
+              class="deck-frame w-full rounded-2xl md:rounded-3xl lg:rounded-[2rem] overflow-hidden relative shadow-deck bg-gradient-to-br from-white via-white to-slate-50/30 border border-slate-200/80 hover:shadow-2xl transition-all duration-500 group"
+              style="
+                aspect-ratio: 16/9;
+                max-height: calc(100vh - clamp(160px, 18vh, 220px));
+                max-width: min(96vw, calc((100vh - clamp(160px, 18vh, 220px)) * 16 / 9));
+                height: auto;
+              "
+              @click="handleDeckClick"
+            >
             <!-- Deck Inner Glow -->
             <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 via-transparent to-brand-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
