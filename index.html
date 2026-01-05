@@ -181,10 +181,16 @@
           v-else
           class="w-full flex items-center justify-center relative z-10"
         >
-          <div
-            class="deck-frame w-full max-w-[95vw] aspect-[16/9] max-h-[calc(100vh-120px)] rounded-3xl md:rounded-[2rem] overflow-hidden relative shadow-deck bg-gradient-to-br from-white via-white to-slate-50/30 border border-slate-200/80 hover:shadow-2xl transition-all duration-500 group"
-            @click="handleDeckClick"
-          >
+            <div
+              class="deck-frame w-full rounded-2xl md:rounded-3xl lg:rounded-[2rem] overflow-hidden relative shadow-deck bg-gradient-to-br from-white via-white to-slate-50/30 border border-slate-200/80 hover:shadow-2xl transition-all duration-500 group"
+              style="
+                aspect-ratio: 16/9;
+                max-height: calc(100vh - clamp(160px, 18vh, 220px));
+                max-width: min(96vw, calc((100vh - clamp(160px, 18vh, 220px)) * 16 / 9));
+                height: auto;
+              "
+              @click="handleDeckClick"
+            >
             <!-- Deck Inner Glow -->
             <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 via-transparent to-brand-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
@@ -333,21 +339,20 @@
                     <!-- Gallery slide -->
                     <div
                       v-else-if="currentSlide.type === 'gallery'"
-                      class="flex flex-col gap-4 md:gap-6 animate-slide-in"
+                      class="flex flex-col lg:flex-row gap-4 md:gap-6 animate-slide-in"
                     >
                       <!-- Gallery Image -->
-                      <div class="relative w-full">
+                      <div class="relative lg:w-1/2 flex-shrink-0">
                         <transition name="image-fade" mode="out-in">
                           <figure
                             v-if="currentGalleryImage"
                             :key="currentGalleryImage.src"
-                            class="w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500"
+                            class="w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-500 flex items-center justify-center"
                           >
                             <img
                               :src="currentGalleryImage.src"
                               :alt="currentGalleryImage.alt"
-                              class="w-full max-w-6xl mx-auto object-contain transition-transform duration-500 hover:scale-105"
-                              style="max-height: 520px; height: auto;"
+                              class="w-full h-auto object-contain transition-transform duration-500 hover:scale-105 max-h-[350px] md:max-h-[450px] lg:max-h-[500px]"
                             />
                           </figure>
                         </transition>
@@ -386,15 +391,16 @@
                         </div>
                       </div>
 
+                      <!-- Gallery Description -->
                       <div
                         v-if="currentGalleryDescription && currentGalleryDescription.length"
-                        class="w-full bg-gradient-to-br from-slate-50/80 to-slate-100/50 rounded-2xl p-6 md:p-8 border border-slate-200 shadow-lg backdrop-blur-sm animate-slide-up"
+                        class="lg:w-1/2 self-start bg-gradient-to-br from-slate-50/80 to-slate-100/50 rounded-2xl p-4 md:p-6 lg:p-8 border border-slate-200 shadow-lg backdrop-blur-sm animate-slide-up max-h-full overflow-y-auto"
                       >
-                        <div class="text-base md:text-lg text-slate-700 space-y-4 md:space-y-5">
+                        <div class="text-sm md:text-base lg:text-lg text-slate-700 space-y-3 md:space-y-4 lg:space-y-5">
                           <p
                             v-for="(para, idx) in currentGalleryDescription"
                             :key="idx"
-                            class="leading-relaxed animate-slide-left"
+                            class="leading-relaxed animate-slide-left break-words"
                             :style="{ animationDelay: `${idx * 150}ms` }"
                           >
                             {{ para }}
